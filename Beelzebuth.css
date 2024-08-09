@@ -1,225 +1,260 @@
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
 
-body {
-    background: linear-gradient(135deg, #0d0d0d, #1a1a1a);
-    color: #fff;
-    font-family: 'Orbitron', sans-serif;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    padding: 15px;
-}
-::-webkit-scrollbar {
-    width: 8px;
-}
+    body {
+        background-color: #1e1e1e; /* Dark background for entire page */
+        color: #e0e0e0; /* Light gray text */
+        font-family: 'Roboto', sans-serif; /* Modern font */
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        padding: 15px;
+        margin: 0;
+    }
 
-::-webkit-scrollbar-thumb {
-    background-color: #0ff; /* Scrollbar color */
-    border-radius: 5px;
-}
+    ::-webkit-scrollbar {
+        width: 10px;
+    }
 
-::-webkit-scrollbar-thumb::horizontal {
-    background-color: #0ff; /* Scrollbar color */
-    border-radius: 5px;
-}
+    ::-webkit-scrollbar-thumb {
+        background-color: #888; /* Gray scrollbar */
+        border-radius: 10px;
+    }
 
-.container {
-    max-width: 90%; /* Increased width */
-    background: rgba(20, 20, 20, 0.9);
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0, 255, 255, 0.5);
-    padding: 20px; /* Reduced padding */
-    border: 1px solid #0ff;
-}
-a {
-    color: #0ff;
-    text-decoration: none !important;
-}
+    .container {
+        max-width: 90%; /* Increased width */
+        background: rgba(40, 40, 40, 0.85); /* Dark gray with glass effect */
+        border-radius: 15px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6); /* Deeper shadow */
+        padding: 25px;
+        border: 1px solid rgba(0, 150, 136, 0.8); /* Teal border */
+        backdrop-filter: blur(12px); /* Glass effect */
+    }
 
-a:hover {
-    color:#00e5e5; 
-    text-decoration: none !important;
-    cursor:pointer;  
-}
+    a {
+        color: #00bcd4; /* Teal */
+        text-decoration: none;
+        transition: color 0.3s;
+    }
 
-.btn {
-    color: #fff;
-    font-size: 12px;
-    background-color: transparent;
-    border: 1px dashed #0ff;
-}
+    a:hover {
+        color: #0097a7; /* Darker teal */
+        text-decoration: underline;
+    }
 
-.btn:hover {
-    color: #0ff;
-}
+    .btn {
+        color: #e0e0e0; /* Light gray text */
+        font-size: 14px;
+        background-color: transparent;
+        border: 2px solid #00bcd4; /* Teal border */
+        border-radius: 8px;
+        padding: 10px 15px;
+        transition: background-color 0.3s, color 0.3s;
+    }
 
-.header {
-    text-align: center;
-    margin-bottom: 10px; /* Reduced margin */
-}
-.nav-pills .nav-link {
-    border-radius: 10px;
-    margin: 0 5px;
-    color: #0ff;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid transparent;
-    transition: background 0.3s, color 0.3s, border 0.3s;
-    font-size: 12px;
-}
-.nav-pills .nav-link.active {
-    color: #0d0d0d;
-    background: #0ff;
-    border-color: #0ff;
-}
-.nav-pills .nav-link:hover {
-    color: #0d0d0d;
-    background: rgba(0, 255, 255, 0.2);
-    border-color: #0ff;
-}
-.tab-content {
-    background: rgba(20, 20, 20, 0.9);
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 255, 255, 0.5);
-    padding: 20px; /* Reduced padding */
-    border: 1px dashed #0ff;
-}
-.tab-pane {
-    min-height: 300px;
-}
-.info-section {
-    margin-top: 20px; /* Reduced margin */
-    padding: 20px; /* Reduced padding */
-    background: rgba(20, 20, 20, 0.9);
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 255, 255, 0.5);
-    border: 1px dashed #0ff;
-    color: #0ff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.info-section .info-item {
-    padding: 10px; /* Reduced padding */
-    border: 1px dashed #0ff;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 255, 255, 0.5);
-    margin-bottom: 10px; /* Reduced margin */
-    width: 100%;
-    text-align: left;
-    background: rgba(0, 255, 255, 0.1);
-    font-size: 12px;
-    color: #fff;
-}
-.info-section .info-item:last-child {
-    margin-bottom: 0;
-}
-.table {
-    background: rgba(20, 20, 20, 0.9);
-    color: #0ff;
-    border-collapse: separate;
-    border-spacing: 0;
-}
+    .btn:hover {
+        color: #ffffff; /* White text */
+        background-color: #00bcd4; /* Teal background */
+    }
 
-.table th, .table td {
-    border: 1px solid #0ff; /* Set border color */
-    padding: 10px; /* Adjust padding if needed */
-}
+    .header {
+        text-align: center;
+        margin-bottom: 20px;
+        font-family: 'Space Mono', monospace; /* Monospace font for header */
+    }
 
-.table thead {
-    background: rgba(0, 255, 255, 0.2); /* Lighter background for header */
-}
+    .nav-pills .nav-link {
+        border-radius: 12px;
+        margin: 0 8px;
+        color: #00bcd4; /* Teal */
+        background: rgba(255, 255, 255, 0.1); /* Light glass effect */
+        border: 1px solid transparent;
+        transition: background 0.3s, color 0.3s, border 0.3s;
+        font-size: 14px;
+        backdrop-filter: blur(5px); /* Glass effect */
+    }
 
-.table thead th {
-    color: #0d0d0d; /* Darker color for header text */
-    font-weight: bold;
-}
+    .nav-pills .nav-link.active {
+        color: #1e1e1e;
+        background: #00bcd4; /* Teal */
+        border-color: #00bcd4;
+    }
 
-.table tbody tr:nth-child(even) {
-    background: rgba(0, 255, 255, 0.05); /* Slightly different background for even rows */
-}
+    .nav-pills .nav-link:hover {
+        color: #1e1e1e;
+        background: rgba(0, 188, 212, 0.2); /* Light teal */
+        border-color: #00bcd4;
+    }
 
-.table tbody tr:nth-child(odd) {
-    background: rgba(20, 20, 20, 0.9); /* Darker background for odd rows */
-}
+    .tab-content {
+        background: rgba(40, 40, 40, 0.85); /* Dark gray with glass effect */
+        border-radius: 12px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6); /* Deeper shadow */
+        padding: 25px;
+        border: 1px solid rgba(0, 150, 136, 0.8); /* Teal border */
+        backdrop-filter: blur(12px); /* Glass effect */
+    }
 
-.table tbody td {
-    color: #0ff; /* Set text color for table body */
-}
-.modal-content {
-    background: #0d0d0d;
-    color: #fff;
-    border: 1px solid #0ff;
-    border-radius: 10px;
-}
-.modal-header, .modal-footer {
-    border-bottom: none;
-    border-top: none;
-}
-.modal-header {
-    background: rgba(0, 255, 255, 0.1);
-}
-.modal-footer {
-    background: rgba(255, 255, 255, 0.1);
-}
-.modal-body {
-    background: rgba(0, 0, 0, 0.7);
-}
-.modal-title {
-    color: #0ff;
-}
-.terminal {
-    background-color: black;
-    color: #0ff; /* Bright green text color */
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 14px;
-    line-height: 1.5;
-    padding: 20px;
-    margin: 0 auto;
-    height: 600px;
-    word-wrap: break-word;
-    border: 1px solid #0ff; /* Optional border for better definition */
-    border-radius: 5px; /* Optional rounded corners */
-    border: 1px dashed #0ff;
-}
+    .tab-pane {
+        min-height: 300px;
+    }
 
-.terminal-content {
-    height: 100%;
-    overflow-y: auto;
-}
+    .info-section {
+        margin-top: 20px;
+        padding: 25px;
+        background: rgba(40, 40, 40, 0.85); /* Dark gray with glass effect */
+        border-radius: 12px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6); /* Deeper shadow */
+        border: 1px solid rgba(0, 150, 136, 0.8); /* Teal border */
+        color: #00bcd4; /* Teal text */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        backdrop-filter: blur(12px); /* Glass effect */
+    }
 
-.terminal-form {
-    display: flex;
-    flex-direction: column;
-}
+    .info-content {
+        display: flex;
+        justify-content: space-between; /* Menempatkan item di kiri dan kanan */
+        width: 100%; /* Pastikan .info-content memanfaatkan lebar penuh dari .info-section */
+    }
 
-.terminal-content::-webkit-scrollbar {
-    width: 8px;
-}
+    .info-left, .info-right {
+        flex: 1; /* Agar kedua bagian memiliki lebar yang sama */
+        margin: 0 10px; /* Memberikan jarak horizontal di antara kedua bagian */
+    }
 
-.terminal-content::-webkit-scrollbar-thumb {
-    background-color: #0ff; /* Scrollbar color */
-    border-radius: 5px;
-}
-.terminal-prompt {
-    color: #0ff; /* Prompt text color */
-    margin-right: 10px; /* Space between prompt and input field */
-    white-space: nowrap; /* Prevents prompt from wrapping */
-}
+    .info-item {
+        margin-bottom: 10px; /* Jarak antar item */
+    }
 
-.terminal-input {
-    border: none;
-    background: transparent;
-    color: #c5c5c5; /* Light gray text for input */
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 14px;
-    outline: none;
-    flex: 1; /* Allows input to take remaining space */
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box; /* Includes padding in width calculation */
-    width: 50%;
-}
+    .additional-info p {
+        margin-bottom: 10px; /* Jarak antar paragraf */
+        font-size: 13px;
+    }
 
-.terminal-input::placeholder {
-    color: #666; /* Placeholder text color */
-}
+    .info-item strong, .additional-info strong {
+        color: #00bcd4; /* Warna teal untuk label */
+    }
+
+
+    .table {
+        background: rgba(40, 40, 40, 0.85); /* Dark gray with glass effect */
+        color: #00bcd4; /* Teal text */
+        border-collapse: separate;
+        border-spacing: 0;
+        backdrop-filter: blur(12px); /* Glass effect */
+    }
+
+    .table th, .table td {
+        border: 1px solid rgba(0, 150, 136, 0.8); /* Teal border */
+        padding: 12px;
+    }
+
+    .table thead {
+        background: rgba(0, 188, 212, 0.2); /* Light teal */
+    }
+
+    .table thead th {
+        color: #1e1e1e; /* Dark gray */
+        font-weight: bold;
+    }
+
+    .table tbody tr:nth-child(even) {
+        background: rgba(0, 188, 212, 0.05); /* Very light teal */
+    }
+
+    .table tbody tr:nth-child(odd) {
+        background: rgba(40, 40, 40, 0.9); /* Darker gray */
+    }
+
+    .table tbody td {
+        color: #00bcd4; /* Teal text */
+    }
+
+    .modal-content {
+        background: rgba(40, 40, 40, 0.9); /* Dark gray with glass effect */
+        color: #e0e0e0; /* Light gray text */
+        border: 1px solid rgba(0, 150, 136, 0.8); /* Teal border */
+        border-radius: 12px;
+        backdrop-filter: blur(12px); /* Glass effect */
+    }
+
+    .modal-header, .modal-footer {
+        border-bottom: none;
+        border-top: none;
+    }
+
+    .modal-header {
+        background: rgba(0, 188, 212, 0.1); /* Light teal */
+    }
+
+    .modal-footer {
+        background: rgba(255, 255, 255, 0.1);
+    }
+
+    .modal-body {
+        background: rgba(0, 0, 0, 0.7);
+    }
+
+    .modal-title {
+        color: #00bcd4; /* Teal */
+    }
+
+    .terminal {
+        background-color: rgba(0, 0, 0, 0.85); /* Darker glass effect */
+        color: #00bcd4; /* Teal text */
+        font-family: 'Space Mono', monospace; /* Monospace font for terminal */
+        font-size: 14px;
+        line-height: 1.5;
+        padding: 20px;
+        margin: 0 auto;
+        height: 600px;
+        word-wrap: break-word;
+        border: 2px solid rgba(0, 150, 136, 0.8); /* Teal border */
+        border-radius: 8px;
+        backdrop-filter: blur(12px); /* Glass effect */
+    }
+
+    .terminal-content {
+        height: 100%;
+        overflow-y: auto;
+    }
+
+    .terminal-form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .terminal-content::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    .terminal-content::-webkit-scrollbar-thumb {
+        background-color: #888; /* Gray scrollbar */
+        border-radius: 10px;
+    }
+
+    .terminal-prompt {
+        color: #00bcd4; /* Teal */
+        margin-right: 10px;
+        white-space: nowrap;
+    }
+
+    .terminal-input {
+        border: none;
+        background: transparent;
+        color: #e0e0e0; /* Light gray text */
+        font-family: 'Space Mono', monospace;
+        font-size: 14px;
+        outline: none;
+        flex: 1;
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        width: 50%;
+    }
+
+    .terminal-input::placeholder {
+        color: #666; /* Darker gray for placeholder text */
+    }
